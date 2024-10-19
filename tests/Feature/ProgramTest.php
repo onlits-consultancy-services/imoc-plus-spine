@@ -8,12 +8,18 @@ use Tests\TestCase;
 
 class ProgramTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    use RefreshDatabase;
+
+    public function test_get_programs_request(): void
     {
-        $response = $this->get('/');
+        $response = $this->getJson('/api/programs');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_get_program_request(): void
+    {
+        $response = $this->getJson('/api/program');
 
         $response->assertStatus(200);
     }

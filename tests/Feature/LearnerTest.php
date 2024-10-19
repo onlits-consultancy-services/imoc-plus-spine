@@ -8,12 +8,18 @@ use Tests\TestCase;
 
 class LearnerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    use RefreshDatabase;
+
+    public function test_get_learners_request(): void
     {
-        $response = $this->get('/');
+        $response = $this->getJson('/api/learners');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_get_learner_request(): void
+    {
+        $response = $this->getJson('/api/learner');
 
         $response->assertStatus(200);
     }

@@ -8,12 +8,18 @@ use Tests\TestCase;
 
 class BatchTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    use RefreshDatabase;
+
+    public function test_get_batches_request(): void
     {
-        $response = $this->get('/');
+        $response = $this->getJson('/api/batches');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_get_batch_request(): void
+    {
+        $response = $this->getJson('/api/batch');
 
         $response->assertStatus(200);
     }

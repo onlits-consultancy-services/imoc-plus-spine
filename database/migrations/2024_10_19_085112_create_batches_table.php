@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('batches', function (Blueprint $table) {
-            $table->id();
+            $table->char('bid', 10);
             $table->timestamps();
         });
     }

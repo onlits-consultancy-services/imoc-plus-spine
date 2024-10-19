@@ -8,59 +8,34 @@ use App\Http\Requests\UpdateAccountRequest;
 
 class AccountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $accounts = Account::all();
+        return response()->json($accounts);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreAccountRequest $request)
     {
-        //
+        $account = new Account();
+        $account->account_no = $request->account_no;
+        $account->name = $request->name;
+        return response()->json($account, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Account $account)
+    public function show(string $accountNo)
     {
-        //
+        $account = Account::find($accountNo);
+
+        return response()->json($account);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Account $account)
+    public function update(UpdateAccountRequest $request, string $accountNo)
     {
-        //
+        $account = Account::find($accountNo);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAccountRequest $request, Account $account)
+    public function destroy(string $accountNo)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Account $account)
-    {
-        //
+        $account = Account::find($accountNo);
     }
 }

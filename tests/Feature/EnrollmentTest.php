@@ -8,12 +8,18 @@ use Tests\TestCase;
 
 class EnrollmentTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    use RefreshDatabase;
+
+    public function test_get_enrollments_request(): void
     {
-        $response = $this->get('/');
+        $response = $this->getJson('/api/enrollments');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_get_enrollment_request(): void
+    {
+        $response = $this->getJson('/api/enrollment');
 
         $response->assertStatus(200);
     }

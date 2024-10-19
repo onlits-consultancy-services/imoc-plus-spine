@@ -8,12 +8,18 @@ use Tests\TestCase;
 
 class LeadTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    use RefreshDatabase;
+
+    public function test_get_leads_request(): void
     {
-        $response = $this->get('/');
+        $response = $this->getJson('/api/leads');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_get_lead_request(): void
+    {
+        $response = $this->getJson('/api/lead');
 
         $response->assertStatus(200);
     }

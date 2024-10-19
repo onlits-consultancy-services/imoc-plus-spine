@@ -8,12 +8,18 @@ use Tests\TestCase;
 
 class OrganizationTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    use RefreshDatabase;
+
+    public function test_get_organizations_request(): void
     {
-        $response = $this->get('/');
+        $response = $this->getJson('/api/organizations');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_get_organization_request(): void
+    {
+        $response = $this->getJson('/api/organization');
 
         $response->assertStatus(200);
     }
