@@ -8,8 +8,6 @@ use Tests\TestCase;
 
 class OrganizationTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_get_organizations_request(): void
     {
         $response = $this->getJson('/api/organizations');
@@ -19,7 +17,7 @@ class OrganizationTest extends TestCase
 
     public function test_get_organization_request(): void
     {
-        $response = $this->getJson('/api/organization');
+        $response = $this->getJson('/api/organizations/oid');
 
         $response->assertStatus(200);
     }

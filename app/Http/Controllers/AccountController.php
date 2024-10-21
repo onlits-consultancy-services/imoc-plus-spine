@@ -17,15 +17,16 @@ class AccountController extends Controller
     public function store(StoreAccountRequest $request)
     {
         $account = new Account();
-        $account->account_no = $request->account_no;
+        $account->account_no = Account::generateAccountNo();
         $account->name = $request->name;
+        $account->group = $request->group;
+        $account->save();
         return response()->json($account, 201);
     }
 
     public function show(string $accountNo)
     {
         $account = Account::find($accountNo);
-
         return response()->json($account);
     }
 

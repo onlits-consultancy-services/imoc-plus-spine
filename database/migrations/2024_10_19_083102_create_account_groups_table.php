@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('account_groups', function (Blueprint $table) {
             $table->string('name')->primary();
             $table->string('parent');
+            $table->string('type');
             $table->timestamps();
         });
     }

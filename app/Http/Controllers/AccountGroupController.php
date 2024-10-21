@@ -8,59 +8,35 @@ use App\Http\Requests\UpdateAccountGroupRequest;
 
 class AccountGroupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $accountGroups = AccountGroup::all();
+        return response()->json($accountGroups);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreAccountGroupRequest $request)
     {
-        //
+        $accountGroup = new AccountGroup();
+        $accountGroup->name = $request->name;
+        $accountGroup->parent = $request->parent;
+        $accountGroup->type = $request->type;
+        $accountGroup->save();
+        return response()->json($accountGroup, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(AccountGroup $accountGroup)
+    public function show(string $name)
     {
-        //
+        $accountGroup = AccountGroup::find($name);
+        return response()->json($accountGroup);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(AccountGroup $accountGroup)
+    public function update(UpdateAccountGroupRequest $request, string $name)
     {
-        //
+        $accountGroup = AccountGroup::find($name);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAccountGroupRequest $request, AccountGroup $accountGroup)
+    public function destroy(string $name)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(AccountGroup $accountGroup)
-    {
-        //
+        $accountGroup = AccountGroup::find($name);
     }
 }

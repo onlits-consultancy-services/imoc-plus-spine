@@ -8,8 +8,6 @@ use Tests\TestCase;
 
 class BatchTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_get_batches_request(): void
     {
         $response = $this->getJson('/api/batches');
@@ -19,7 +17,7 @@ class BatchTest extends TestCase
 
     public function test_get_batch_request(): void
     {
-        $response = $this->getJson('/api/batch');
+        $response = $this->getJson('/api/batches/batch_id');
 
         $response->assertStatus(200);
     }

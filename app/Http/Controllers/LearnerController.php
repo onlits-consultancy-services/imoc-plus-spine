@@ -5,62 +5,39 @@ namespace App\Http\Controllers;
 use App\Models\Learner;
 use App\Http\Requests\StoreLearnerRequest;
 use App\Http\Requests\UpdateLearnerRequest;
+use Dotenv\Repository\RepositoryInterface;
 
 class LearnerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $learners = Learner::all();
+        return response()->json($learners);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreLearnerRequest $request)
     {
-        //
+        $learner = new Learner();
+
+        $learner->save();
+        return response()->json($learner, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Learner $learner)
+    public function show(string $lid)
     {
-        //
+        $learner = Learner::find($lid);
+        return response()->json($learner);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Learner $learner)
+    public function update(UpdateLearnerRequest $request,string $lid)
     {
-        //
+        $learner = Learner::find($lid);
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateLearnerRequest $request, Learner $learner)
+    public function destroy(string $lid)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Learner $learner)
-    {
-        //
+        $learner = Learner::find($lid);
+        
     }
 }

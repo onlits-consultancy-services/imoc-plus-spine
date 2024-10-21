@@ -8,59 +8,35 @@ use App\Http\Requests\UpdateLeadRequest;
 
 class LeadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $leads = Lead::all();
+        return response()->json($leads);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreLeadRequest $request)
     {
-        //
+        $lead = new Lead();
+
+        $lead->save();
+        return response()->json($lead, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Lead $lead)
+    public function show(string $id)
     {
-        //
+        $lead = Lead::find($id);
+        return response()->json($lead);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Lead $lead)
+    public function update(UpdateLeadRequest $request, string $id)
     {
-        //
+        $lead = Lead::find($id);
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateLeadRequest $request, Lead $lead)
+    public function destroy(int $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Lead $lead)
-    {
-        //
+        $lead = Lead::find($id);
+        
     }
 }

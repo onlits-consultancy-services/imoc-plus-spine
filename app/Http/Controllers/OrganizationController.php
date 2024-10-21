@@ -19,21 +19,24 @@ class OrganizationController extends Controller
         $organization = new Organization();
         $organization->name = $request->name;
         $organization->save();
+        return response()->json($organization, 201);
+    }
+
+    public function show(string $oid)
+    {
+        $organization = Organization::find($oid);
         return response()->json($organization);
     }
 
-    public function show(Organization $organization)
+    public function update(UpdateOrganizationRequest $request, string $oid)
     {
+        $organization = Organization::find($oid);
         
     }
 
-    public function update(UpdateOrganizationRequest $request, Organization $organization)
+    public function destroy(string $oid)
     {
-        //
-    }
-
-    public function destroy(Organization $organization)
-    {
-        //
+        $organization = Organization::find($oid);
+        
     }
 }

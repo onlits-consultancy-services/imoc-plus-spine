@@ -8,59 +8,35 @@ use App\Http\Requests\UpdateBatchRequest;
 
 class BatchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $batches = Batch::all();
+        return response()->json($batches);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreBatchRequest $request)
     {
-        //
+        $batch = new Batch();
+
+        $batch->save();
+        return response()->json($batch, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Batch $batch)
+    public function show(string $batch_id)
     {
-        //
+        $batch = Batch::find($batch_id);
+        return response()->json($batch);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Batch $batch)
+    public function update(UpdateBatchRequest $request, string $batch_id)
     {
-        //
+        $batch = Batch::find($batch_id);
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateBatchRequest $request, Batch $batch)
+    public function destroy(string $batch_id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Batch $batch)
-    {
-        //
+        $batch = Batch::find($batch_id);
+        
     }
 }

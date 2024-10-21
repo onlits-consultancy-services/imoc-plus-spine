@@ -8,8 +8,6 @@ use Tests\TestCase;
 
 class LeadTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_get_leads_request(): void
     {
         $response = $this->getJson('/api/leads');
@@ -19,7 +17,7 @@ class LeadTest extends TestCase
 
     public function test_get_lead_request(): void
     {
-        $response = $this->getJson('/api/lead');
+        $response = $this->getJson('/api/leads/id');
 
         $response->assertStatus(200);
     }

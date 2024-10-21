@@ -2,19 +2,19 @@
 
 namespace Tests\Feature;
 
+use App\Models\Account;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AccountTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_post_account_request(): void
     {
         $account = [
-            'account_no' => 'ac_no',
-            'name' => 'Capital Account'
+            'account_no' => Account::generateAccountNo(),
+            'name' => 'Capital Account',
+            'group' => 'Capital Account',
         ];
 
         $response = $this->postJson('/api/accounts', $account);
@@ -22,8 +22,9 @@ class AccountTest extends TestCase
         $response
             ->assertStatus(201)
             ->assertJson([
-                'account_no' => 'ac_no',
-                'name' => 'Capital Account',
+                'account_no' => $account['account_no'],
+                'name' => $account['name'],
+                'group' => $account['group'],
             ]);
     }
 

@@ -19,7 +19,7 @@ class ProgramTest extends TestCase
 
     public function test_get_program_request(): void
     {
-        $response = $this->getJson('/api/program');
+        $response = $this->getJson('/api/programs/program_id');
 
         $response->assertStatus(200);
     }

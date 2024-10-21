@@ -22,8 +22,8 @@ class StoreAccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'account_no' => 'required',
             'name' => 'required',
+            'group' => 'required',
         ];
     }
 }

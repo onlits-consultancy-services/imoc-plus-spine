@@ -8,8 +8,6 @@ use Tests\TestCase;
 
 class AttendanceTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_get_attendances_request(): void
     {
         $response = $this->getJson('/api/attendances');
@@ -19,7 +17,7 @@ class AttendanceTest extends TestCase
 
     public function test_get_attendance_request(): void
     {
-        $response = $this->getJson('/api/attendance');
+        $response = $this->getJson('/api/attendances/id');
 
         $response->assertStatus(200);
     }

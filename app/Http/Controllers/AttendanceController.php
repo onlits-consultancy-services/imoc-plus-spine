@@ -8,59 +8,32 @@ use App\Http\Requests\UpdateAttendanceRequest;
 
 class AttendanceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $attendances = Attendance::all();
+        return response()->json($attendances);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreAttendanceRequest $request)
     {
-        //
+        $attendance = new Attendance();
+        $attendance->save();
+        return response()->json($attendance, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Attendance $attendance)
+    public function show(string $id)
     {
-        //
+        $attendance = Attendance::find($id);
+        return response()->json($attendance);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Attendance $attendance)
+    public function update(UpdateAttendanceRequest $request,string $id)
     {
-        //
+        $attendance = Attendance::find($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAttendanceRequest $request, Attendance $attendance)
+    public function destroy(int $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Attendance $attendance)
-    {
-        //
+        $attendance = Attendance::find($id);
     }
 }

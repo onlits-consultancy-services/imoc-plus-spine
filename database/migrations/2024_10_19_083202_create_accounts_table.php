@@ -12,9 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->char('account_no', 10);
-            $table->string('name');
+            $table->char('account_no', 15)->primary();
+            $table->string('name')->unique();
+            $table->string('group');
             $table->timestamps();
+
+            $table->foreign('group')->references('name')->on('account_groups');
         });
     }
 

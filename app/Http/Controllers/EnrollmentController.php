@@ -8,59 +8,35 @@ use App\Http\Requests\UpdateEnrollmentRequest;
 
 class EnrollmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $enrollments = Enrollment::all();
+        return response()->json($enrollments);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreEnrollmentRequest $request)
     {
-        //
+        $enrollment = new Enrollment();
+        
+        $enrollment->save();
+        return response()->json($enrollment, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Enrollment $enrollment)
+    public function show(string $enrollmentNo)
     {
-        //
+        $enrollment = Enrollment::find($enrollmentNo);
+        return response()->json($enrollment);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Enrollment $enrollment)
+    public function update(UpdateEnrollmentRequest $request, string $enrollmentNo)
     {
-        //
+        $enrollment = Enrollment::find($enrollmentNo);
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateEnrollmentRequest $request, Enrollment $enrollment)
+    public function destroy(string $enrollmentNo)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Enrollment $enrollment)
-    {
-        //
+        $enrollment = Enrollment::find($enrollmentNo);
+        
     }
 }

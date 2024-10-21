@@ -8,10 +8,9 @@ use Tests\TestCase;
 
 class AccountGroupTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_get_account_groups_request(): void
     {
+        $this->seed();
         $response = $this->getJson('/api/account-groups');
 
         $response->assertStatus(200);
@@ -19,7 +18,7 @@ class AccountGroupTest extends TestCase
 
     public function test_get_account_group_request(): void
     {
-        $response = $this->getJson('/api/account-group');
+        $response = $this->getJson('/api/account-groups/name');
 
         $response->assertStatus(200);
     }
