@@ -11,14 +11,16 @@ class AccountTest extends TestCase
 {
     public function test_post_account_request(): void
     {
-        $account = [
+        $testCase = [
             'account_no' => Account::generateAccountNo(),
             'name' => 'Capital Account',
             'group' => 'Capital Account',
         ];
 
-        $response = $this->postJson('/api/accounts', $account);
+        $response = $this->postJson('/api/accounts', $testCase);
 
+        $account = Account::find($testCase['account_no']);
+        
         $response
             ->assertStatus(201)
             ->assertJson([

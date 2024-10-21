@@ -12,7 +12,6 @@ class Account extends Model
 
     public static function generateAccountNo(): string
     {
-        $accountNo = '1' . date('Ymdhis');
-        return $accountNo;
+        return '1' . date('Ymdhis');
     }
 }

@@ -12,9 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('organizations', function (Blueprint $table) {
-            $table->char('oid', 10)->primary();
+            $table->char('oid', 15)->primary();
             $table->string('name')->unique();
-            
+            $table->string('street')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->char('pin', 6)->nullable();
+            $table->char('pan', 10)->nullable();
+            $table->char('gstin', 15)->nullable();
+
             $table->timestamps();
         });
     }
