@@ -33,10 +33,16 @@ class AccountController extends Controller
     public function update(UpdateAccountRequest $request, string $accountNo)
     {
         $account = Account::find($accountNo);
+        $account->name = $request->name;
+        $account->group = $request->group;
+        $account->save();
+        return response()->json($account);
     }
 
     public function destroy(string $accountNo)
     {
         $account = Account::find($accountNo);
+        $account->delete();
+        return response()->json($account);
     }
 }

@@ -33,10 +33,18 @@ class AccountGroupController extends Controller
     public function update(UpdateAccountGroupRequest $request, string $name)
     {
         $accountGroup = AccountGroup::find($name);
+        $accountGroup->name = $request->name;
+        $accountGroup->parent = $request->parent;
+        $accountGroup->type = $request->type;
+        $accountGroup->save();
+        return response()->json($accountGroup);
     }
 
     public function destroy(string $name)
     {
         $accountGroup = AccountGroup::find($name);
+        $accountGroup->delete();
+        return response()->json($accountGroup);
+
     }
 }

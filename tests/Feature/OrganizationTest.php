@@ -14,17 +14,25 @@ class OrganizationTest extends TestCase
         $testCase = [
             'oid' => Organization::generateOid(),
             'name' => 'ONLITS LEARNING SOLUTIONS',
+            'street' => 'Srinagar Colony',
+            'city' => 'Muzaffarpur',
+            'state' => 'Bihar',
+            'pin' => '842001',
         ];
 
         $response = $this->postJson('/api/organizations', $testCase);
 
         $organization = Organization::find($testCase['oid']);
-        
+
         $response
-        ->assertStatus(201)
-        ->assertJson([
-            'name' => $organization['name'],
-        ]);
+            ->assertStatus(201)
+            ->assertJson([
+                'name' => $organization['name'],
+                'street' => 'Srinagar Colony',
+                'city' => 'Muzaffarpur',
+                'state' => 'Bihar',
+                'pin' => '842001',
+            ]);
     }
 
     public function test_get_organizations_request(): void
